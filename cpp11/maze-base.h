@@ -1,6 +1,8 @@
 #ifndef rra_maze_base
 #define rra_maze_base
 #include <iostream>
+#include <string>
+using std::string;
 using std::cin;
 using std::cout;
 enum blocktype{
@@ -13,12 +15,15 @@ enum blocktype{
     text=3,
         texts=300,
     space=4,
-        common_space=400,
+        air=400,
+        smoke,
     machine=5,
         upstairs=500,
         downstairs,
         portal,
         button,
+        entrance,
+        exit,
     laser=6,
     gate=7,
 };
@@ -27,5 +32,6 @@ class block{
     unsigned short id,info;
     public:
     block();
+    string push_block(unsigned short &color);
 };
 #endif
