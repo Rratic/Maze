@@ -2,6 +2,7 @@
 #define rra_maze_base
 #include <iostream>
 #include <string>
+#include "paint.h"
 using std::string;
 using std::cin;
 using std::cout;
@@ -32,6 +33,6 @@ class block{
     unsigned short id,info;
     public:
     block();
-    string push_block(unsigned short &color);
+    char push_block(PAINT &color);
 };
 #endif

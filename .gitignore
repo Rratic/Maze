@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# Private files
+*.notes
+test.*
+*.test
