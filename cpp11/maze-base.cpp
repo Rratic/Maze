@@ -9,6 +9,7 @@ char block::push_block(PAINT &color)
         case wall:color.first=df(p_yellow);break;
         case creature:color.first=df(p_purple);break;
         case text:color.first=df(p_black);color.second=db(p_white);break;
+        case space:color.first=lf(p_purple);color.second=db(p_black);break;
     }
     switch(id){
         case blank:return ' ';break;
@@ -19,4 +20,10 @@ char block::push_block(PAINT &color)
         case air:return '.';break;
         case smoke:return ':';break;
     }
+}
+entity::entity(){id=0;}
+entity::entity(unsigned short iid,unsigned short hhealth,string nname){
+    id=iid;
+    health=hhealth;
+    name=nname;
 }

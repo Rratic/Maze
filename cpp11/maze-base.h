@@ -35,4 +35,12 @@ class block{
     block();
     char push_block(PAINT &color);
 };
+class entity{
+    public:
+    unsigned short id,health,x,y;
+    string name;
+    entity();
+    entity(unsigned short iid,unsigned short hhealth,string nname);
+    void die();
+};
 #endif
