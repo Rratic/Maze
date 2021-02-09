@@ -2,6 +2,7 @@
 #define rra_paint
 #include <utility>
 using std::pair;
+using std::make_pair;
 typedef pair<unsigned short, unsigned short> PAINT;
 #define p_black 0
 #define p_red 1
@@ -22,4 +23,6 @@ l=light
 f=font
 b=background
 */
+extern PAINT uni_paint;
+void clearpaint();
 #endif
