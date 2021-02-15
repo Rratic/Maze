@@ -1,0 +1,5 @@
+main
+    |maze-game
+        |maze-chunk
+            |maze-base
+                |paint

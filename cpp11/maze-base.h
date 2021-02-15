@@ -6,6 +6,7 @@
 using std::string;
 using std::cin;
 using std::cout;
+using std::endl;
 enum blocktype{
     blank=0,
     wall=1,
