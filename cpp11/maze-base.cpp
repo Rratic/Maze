@@ -20,6 +20,7 @@ char block::push_block(PAINT &color)
         case air:return '.';break;
         case smoke:return ':';break;
     }
+    return ' ';
 }
 entity::entity(){id=0;}
 entity::entity(unsigned short iid,unsigned short hhealth,string nname){

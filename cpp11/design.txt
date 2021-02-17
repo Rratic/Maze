@@ -1,5 +1,11 @@
 main
+    |<cstdlib>
     |maze-game
         |maze-chunk
+            |<array>
+            |<vector>
             |maze-base
+                |<iostream>
+                |<string>
                 |paint
+                    |<utility>

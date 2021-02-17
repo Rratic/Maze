@@ -25,7 +25,7 @@ enum blocktype{
         portal,
         button,
         entrance,
-        exit,
+        exitb,
     laser=6,
     gate=7,
 };

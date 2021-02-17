@@ -1,8 +1,13 @@
 #include <cstdlib>
-using namespace std;
+#include "maze-game.h"
+using std::system;
 int main(){
 #ifdef _WIN32
     system("chcp 65001");//windows默认不是utf-8
+    cls;
 #endif
+    while(true){
+        menu();
+    }
     return 0;
 }

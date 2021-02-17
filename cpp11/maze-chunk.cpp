@@ -14,6 +14,10 @@ void chunk::putchunk(){
         for(unsigned short j=0;j<16;++j){
             PAINT brush;
             char ch=blocks[i][j].push_block(brush);
+            if(player->x!=i||player->y!=j){
+                cout<<putbrush(brush);
+            }
+            cout<<ch;
         }
         cout<<'\n';
     }
