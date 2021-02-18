@@ -15,12 +15,24 @@ char block::push_block(PAINT &color)
         case blank:return ' ';break;
         case unbreakable_wall:return '#';break;
         case stone_wall:return 'X';break;
-        case player:return 'i';break;
         case texts:return char(info);break;
         case air:return '.';break;
         case smoke:return ':';break;
     }
     return ' ';
+}
+void block::set(char in){
+    switch(in){
+        case ' ':id=blank;break;
+        case '#':id=unbreakable_wall;break;
+        case 'X':id=stone_wall;break;
+        case '.':id=air;break;
+        case ':':id=smoke;break;
+    }
+}
+void block::settext(char in){
+    id=texts;
+    info=in;
 }
 entity::entity(){id=0;}
 entity::entity(unsigned short iid,unsigned short hhealth,string nname){

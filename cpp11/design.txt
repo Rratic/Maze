@@ -4,6 +4,7 @@ main
         |maze-chunk
             |<array>
             |<vector>
+            |<fstream>
             |maze-base
                 |<iostream>
                 |<string>

@@ -22,3 +22,22 @@ void chunk::putchunk(){
         cout<<'\n';
     }
 }
+bool chunk::toline(string s,unsigned short line){
+    size_t t=s.length(),c=0;
+    for(size_t i=0;i<t;++i){
+        if(s[i]=='\\'){
+            ++i;
+            blocks[line][c].settext(s[i]);
+            ++c;
+            continue;
+        }
+        if(s[i]=='@'){
+            player->x=line;
+            player->y=i-c;
+        }
+        else{
+            blocks[line][c].set(s[i]);
+        }
+        ++c;
+    }
+}

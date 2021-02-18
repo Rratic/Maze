@@ -13,7 +13,7 @@ enum blocktype{
         unbreakable_wall=100,
         stone_wall,
     creature=2,
-        player=200,
+        //player=200,
     text=3,
         texts=300,
     space=4,
@@ -34,7 +34,9 @@ class block{
     unsigned short id,info;
     public:
     block();
+    void set(char in);
     char push_block(PAINT &color);
+    void settext(char in);
 };
 class entity{
     public:
