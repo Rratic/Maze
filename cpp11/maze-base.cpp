@@ -10,14 +10,17 @@ char block::push_block(PAINT &color)
         case creature:color.first=df(p_purple);break;
         case text:color.first=df(p_black);color.second=db(p_white);break;
         case space:color.first=lf(p_purple);color.second=db(p_black);break;
+        case machine:color.first=lf(p_green);break;
     }
     switch(id){
-        case blank:return ' ';break;
-        case unbreakable_wall:return '#';break;
-        case stone_wall:return 'X';break;
-        case texts:return char(info);break;
-        case air:return '.';break;
-        case smoke:return ':';break;
+        case blank:return ' ';
+        case unbreakable_wall:return '#';
+        case stone_wall:return 'X';
+        case texts:return char(info);
+        case air:return '.';
+        case smoke:return ':';
+        case money:return '$';
+        case exitb:return '%';
     }
     return ' ';
 }
@@ -28,6 +31,11 @@ void block::set(char in){
         case 'X':id=stone_wall;break;
         case '.':id=air;break;
         case ':':id=smoke;break;
+        case '%':id=exitb;break;
+        default:{
+            id=texts;
+            info=in;
+        }
     }
 }
 void block::settext(char in){

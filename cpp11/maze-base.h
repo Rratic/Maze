@@ -19,6 +19,7 @@ enum blocktype{
     space=4,
         air=400,
         smoke,
+        money,
     machine=5,
         upstairs=500,
         downstairs,

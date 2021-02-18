@@ -8,16 +8,17 @@ using std::array;
 using std::vector;
 using std::ifstream;
 using std::ofstream;
+using std::ios;
 class chunk
 {
     public:
     entity *player;
     array<array<block,16>,16>blocks;
     chunk();
-    chunk(chunk &other);
+    chunk(const chunk &other);
+    ~chunk();
     void putchunk();
     bool toline(string s,unsigned short line);
-    bool set(string filename,string find);
     unsigned short work();
 };
 #endif
