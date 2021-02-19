@@ -31,9 +31,8 @@ enum blocktype{
     gate=7,
 };
 class block{
-    private:
-    unsigned short id,info;
     public:
+    unsigned short id,info;
     block();
     void set(char in);
     char push_block(PAINT &color);
@@ -41,7 +40,8 @@ class block{
 };
 class entity{
     public:
-    unsigned short id,health,x,y;
+    unsigned short id,health;
+    char x,y;
     string name;
     entity();
     entity(unsigned short iid,unsigned short hhealth,string nname);

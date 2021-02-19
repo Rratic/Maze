@@ -9,7 +9,7 @@ char block::push_block(PAINT &color)
         case wall:color.first=lf(p_yellow);break;
         case creature:color.first=df(p_cyan);break;
         case text:color.first=df(p_black);color.second=db(p_white);break;
-        case space:color.first=lf(p_white);color.second=db(p_black);break;
+        case space:break;
         case machine:color.first=lf(p_green);break;
     }
     switch(id){

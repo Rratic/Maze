@@ -34,11 +34,20 @@ bool game::set(string filename,string find){
     if(!flag)return false;
     return true;
 }
+void end_with(string s){
+    cout<<s<<'\n'<<"Press any key to continue."<<'\n';
+    char c;
+    cin>>c;
+}
 unsigned short game::work(){
     unsigned short a,b=focusing;
-    a=chunks[focusing].work(b,help_words);
-    switch(a){
-        case 1:break;
+    while(true){
+        a=chunks[focusing].work(b,help_words);
+        switch(a){
+            case 0:end_with("Success!");return 0;
+            case 1:end_with("You fell into the void!");return 1;
+            case 4:return 4;
+        }
     }
     return 0;
 }
