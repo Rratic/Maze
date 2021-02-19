@@ -2,14 +2,14 @@
 block::block() { id = blank; }
 char block::push_block(PAINT &color)
 {
-    auto te=id%100;
+    auto te=id/100;
     switch(te)
     {
-        case blank:color.second=lb(p_white);break;
-        case wall:color.first=df(p_yellow);break;
-        case creature:color.first=df(p_purple);break;
+        case blank:color.second=lb(p_purple);break;
+        case wall:color.first=lf(p_yellow);break;
+        case creature:color.first=df(p_cyan);break;
         case text:color.first=df(p_black);color.second=db(p_white);break;
-        case space:color.first=lf(p_purple);color.second=db(p_black);break;
+        case space:color.first=lf(p_white);color.second=db(p_black);break;
         case machine:color.first=lf(p_green);break;
     }
     switch(id){
@@ -17,7 +17,7 @@ char block::push_block(PAINT &color)
         case unbreakable_wall:return '#';
         case stone_wall:return 'X';
         case texts:return char(info);
-        case air:return '.';
+        case air:return ' ';//differs in color
         case smoke:return ':';
         case money:return '$';
         case exitb:return '%';

@@ -19,6 +19,6 @@ class chunk
     ~chunk();
     void putchunk();
     bool toline(string s,unsigned short line);
-    unsigned short work();
+    unsigned short work(unsigned short &info,string words);
 };
 #endif

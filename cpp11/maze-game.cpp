@@ -18,21 +18,33 @@ bool game::set(string filename,string find){
     if(flag)return false;
     fin>>num>>len;
     for(unsigned short i=0;i<num;++i){
+        getline(fin,s);
         chunk te;
         for(unsigned short j=0;j<len;++j){
-            fin>>s;
+            getline(fin,s);
+            if(s.find("@")!=s.npos){
+                if(flag)return false;
+                focusing=i;
+                flag=true;
+            }
             if(!te.toline(s,j))return false;
         }
         chunks.push_back(te);
     }
+    if(!flag)return false;
     return true;
 }
 unsigned short game::work(){
+    unsigned short a,b=focusing;
+    a=chunks[focusing].work(b,help_words);
+    switch(a){
+        case 1:break;
+    }
     return 0;
 }
 void menu(){
-    cout<<"Maze v"<<version<<'\n'\
-        <<"===\n"\
+    cout<<"\033[92mMaze v"<<version<<'\n'\
+        <<"\033[93m===\n\033[m"\
         <<"1=Start Adventure\n"\
         <<"2=Random Maze\n"\
         <<"0=Exit\n"\
@@ -55,7 +67,9 @@ void level_menu(){
         cin>>input;
         if(input=="0")return;
         if(all.set("data/levels.data",input)){
+            all.help_words="Use w,a,s,d to move.";
             all.work();
+            cls;
         }
         else{
             cls;
