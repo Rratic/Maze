@@ -4,6 +4,7 @@ void init(){
     if(!setting.fill("save/setting.txt")){
         setting.tag["level-data"]="data/levels.data";
         setting.tag["lang-data"]="data/lang/en.txt";
+        setting.tag["saving"]="save/saving.txt";
         if(!setting.save("save/setting.txt")){
             cout<<"Error saving setting!\nTarget file path:save/setting.txt\n";
             cin>>input;
@@ -18,6 +19,7 @@ bool game::set(string filename,string find){
     ifstream fin;
     fin.open(filename,ios::in);
     if(!fin.is_open())return false;
+    name=find;
     string s;
     find='$'+find;
     unsigned short num,len;
@@ -59,7 +61,12 @@ unsigned short game::work(){
     while(true){
         a=chunks[focusing].work(b,help_words);
         switch(a){
-            case 0:end_with(lang.tag["win"]+"\nYour score:"+tos(b));return 0;
+            case 0:{
+                end_with(lang.tag["win"]+'\n'+lang.tag["score"]+':'+tos(b));
+                savedgame.tag[name]=tos(b);
+                savedgame.save(setting.tag["saving"]);
+                return 0;
+            }
             case 1:end_with(lang.tag["die-0"]);return 1;
             case 4:return 4;
         }
@@ -67,7 +74,7 @@ unsigned short game::work(){
     return 0;
 }
 void menu(){
-    cout<<"\033[92m"<<lang.tag["game-name"]<<" v"<<version<<'\n'\
+    cout<<"\033[92m"<<lang.tag["game-name"]<<'\n'\
         <<"\033[93m===\n\033[m"\
         <<"1="<<lang.tag["menu-first"]<<'\n'\
         <<"2="<<lang.tag["menu-second"]<<'\n'\
@@ -87,7 +94,11 @@ void level_menu(){
     game all;
     while(true){
         for(unsigned short i=1;i!=5;++i){
-            cout<<"1-"<<i<<' '<<lang.tag["name-1-"+tos(i)]<<'\n';
+            string te="1-"+tos(i);
+            cout<<"1-"<<i<<' '<<lang.tag["name-"+te]<<' ';
+            if(savedgame.without(te))cout<<lang.tag["level-uncompleted"];
+            else cout<<lang.tag["score"]<<':'<<savedgame.tag[te];
+            cout<<'\n';
         }
         cout<<"0 "<<lang.tag["exit"]<<"\n"\
             <<lang.tag["menu-choice"]<<">>[   ]\033[4D";
@@ -117,6 +128,7 @@ void set_game(){
         return;
     }
     setting.tag[input]=input2;
-    if(input=="lang-data")lang.fill(setting.tag["lang-data"]);
+    if(input=="lang-data")lang.fill(input2);
+    if(input=="saving")savedgame.fill(input2);
     setting.save("save/setting.txt");
 }

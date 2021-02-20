@@ -37,4 +37,7 @@ bool tags::save(string filename){
     }
     return true;
 }
+bool tags::without(string x){
+    return tag.find(x)==tag.end();
+}
 tags lang,setting,savedgame;

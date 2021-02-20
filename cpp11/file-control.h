@@ -13,6 +13,7 @@ class tags{
     bool fill(string filename);
     string search(string tagname);
     bool save(string filename);
+    bool without(string x);
 };
 extern tags lang,setting,savedgame;
 #endif

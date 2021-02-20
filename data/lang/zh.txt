@@ -10,6 +10,8 @@ exit:退出
 pause:按任意键继续
 ---
 level-unfound:打开关卡失败qaq
+level-uncompleted:未完成
+score:分数
 win:成功了！
 die-0:你掉进了虚空！
 ---
