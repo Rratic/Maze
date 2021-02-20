@@ -33,14 +33,22 @@ Use e to "use" a machine.按e使用机器。
 - Default Health:10默认生命值为10
 ### Blocks方块
 - Void虚空 " ",LB_purple
+
+Do not step in!不要踏入！
 #### Walls墙类
 - UnbreakableWall坚墙 "#",LF_yellow
+
+Unbreakable.坚不可摧。
 #### Texts文字
 - Text文字 /,DF_black,DB_white
+
+Texts could be moved if not blocked.如果不被阻挡，文字可以被推动。
 #### Machines机器
 - Exit出口 "%",LF_green
+
+Press e and you will win!按e，你就赢了！
 #### Comment注释
 - LF=light font亮色前景
 - DF=dark font暗色前景
-- LB
-- DB
+- LB=light background亮色背景
+- DB=dark background暗色背景

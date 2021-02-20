@@ -81,6 +81,11 @@ unsigned short chunk::work(unsigned short &info,string words){
             return 1;
         }
         if(blocks[x][y].id/100==wall)continue;
+        if(blocks[x][y].id==texts){
+            if(blocks[x+xx][y+yy].id/100!=space)continue;
+            blocks[x+xx][y+yy]=blocks[x][y];
+            blocks[x][y].id=air;
+        }
         player->x=x;player->y=y;
     /*
     w,a,s,d move

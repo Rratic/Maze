@@ -1,0 +1,1 @@
+g++ -std=c++11 ./cpp11/main.cpp ./cpp11/maze-game.cpp ./cpp11/maze-chunk.cpp ./cpp11/maze-base.cpp./cpp11/paint.cpp -o ./maze
