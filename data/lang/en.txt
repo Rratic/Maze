@@ -1,0 +1,21 @@
+English
+game-name:Maze
+default:Err_unfound
+===
+menu-first:Start Adventure
+menu-second:Random Maze
+menu-setting:Setting
+menu-choice:Choose
+exit:Exit
+pause:Press any key to continue.
+---
+level-unfound:Error opening level :(
+win:Success!
+die-0:You fell into the void!
+---
+name-1-1:Hello Maze
+help-1-1:Use w,a,s,d to move.When you reach the exit(%),press e.
+name-1-2:Simple Maze
+help-1-2:There may be more than one exit.
+name-1-3:Move Texts
+help-1-3:Texts can be moved if they are not blocked.

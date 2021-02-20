@@ -2,13 +2,9 @@
 #define rra_maze_map
 #include <array>
 #include <vector>
-#include <fstream>
 #include "maze-base.h"
 using std::array;
 using std::vector;
-using std::ifstream;
-using std::ofstream;
-using std::ios;
 class chunk
 {
     public:

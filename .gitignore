@@ -38,3 +38,6 @@
 *.notes
 test.*
 *.test
+
+# Program files
+save/setting.txt

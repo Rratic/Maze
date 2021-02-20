@@ -4,9 +4,12 @@ main
         |maze-chunk
             |<array>
             |<vector>
-            |<fstream>
             |maze-base
                 |<iostream>
                 |<string>
                 |paint
                     |<utility>
+        |file-control
+            |<fstream>
+            |<unordered_map>
+            |maze-base

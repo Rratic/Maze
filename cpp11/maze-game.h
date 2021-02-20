@@ -1,7 +1,8 @@
 #ifndef rra_maze_game
 #define rra_maze_game
 #include "maze-chunk.h"
-extern string version;
+#include "file-control.h"
+#define version "0.2.0"
 extern string input;
 class game{
     private:
@@ -13,6 +14,7 @@ class game{
     unsigned short work();
     void clear();
 };
+void init();
 void menu();
 void level_menu();
 #endif

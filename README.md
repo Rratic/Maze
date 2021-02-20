@@ -8,9 +8,9 @@ Multilayer packaging, from a single block to the entire game, more like a sandbo
 ### Open打开游戏
 
 #### If you haven't got an excutable file.如果你还没有可执行文件
-run `[complier path] -std=c++11 [code path]/cpp11/main.cpp [code path]/cpp11/maze-game.cpp [code path]/cpp11/maze-chunk.cpp [code path]/cpp11/maze-base.cpp [code path]/cpp11/paint.cpp -o [code path]/maze.exe`
+run `[complier path] -std=c++11 [code path]/cpp11/main.cpp [code path]/cpp11/maze-game.cpp [code path]/cpp11/maze-chunk.cpp [code path]/cpp11/maze-base.cpp [code path]/cpp11/file-control.cpp [code path]/cpp11/paint.cpp -o [code path]/maze.exe`
 
-e.g. (using g++,code path=`D:/C++`):`g++ -std=c++11 D:/C++/Maze/cpp11/main.cpp D:/C++/Maze/cpp11/maze-game.cpp D:/C++/Maze/cpp11/maze-chunk.cpp D:/C++/Maze/cpp11/maze-base.cpp D:/C++/Maze/cpp11/paint.cpp -o D:/C++/Maze/maze.exe`
+e.g. (using g++,code path=`D:/C++`):`g++ -std=c++11 D:/C++/Maze/cpp11/main.cpp D:/C++/Maze/cpp11/maze-game.cpp D:/C++/Maze/cpp11/maze-chunk.cpp D:/C++/Maze/cpp11/maze-base.cpp D:/C++/Maze/cpp11/file-control.cpp D:/C++/Maze/cpp11/paint.cpp -o D:/C++/Maze/maze.exe`
 
 #### And then然后……
 your folder must at least include:
