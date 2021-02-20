@@ -1,5 +1,5 @@
 #include "maze-game.h"
-string input;
+string input,input2;
 void init(){
     if(!setting.fill("save/setting.txt")){
         setting.tag["level-data"]="data/levels.data";
@@ -33,8 +33,10 @@ bool game::set(string filename,string find){
     for(unsigned short i=0;i<num;++i){
         getline(fin,s);
         chunk te;
+        te.l=len;
         for(unsigned short j=0;j<len;++j){
             getline(fin,s);
+            if(j==0)te.w=s.length();
             if(s.find("@")!=s.npos){
                 if(flag)return false;
                 focusing=i;
@@ -53,11 +55,11 @@ void end_with(string s){
     cin>>c;
 }
 unsigned short game::work(){
-    unsigned short a,b=focusing;
+    unsigned short a,b=0;
     while(true){
         a=chunks[focusing].work(b,help_words);
         switch(a){
-            case 0:end_with(lang.tag["win"]);return 0;
+            case 0:end_with(lang.tag["win"]+"\nYour score:"+tos(b));return 0;
             case 1:end_with(lang.tag["die-0"]);return 1;
             case 4:return 4;
         }
@@ -76,6 +78,7 @@ void menu(){
     if(input=="0")exit(0);
     cls;
     if(input=="1")level_menu();
+    else if(input=="s")set_game();
 }
 void game::clear(){
     chunks.clear();
@@ -83,14 +86,14 @@ void game::clear(){
 void level_menu(){
     game all;
     while(true){
-        for(string i="1-1";i!="1-4";++i[2]){
-            cout<<i<<' '<<lang.tag["name-"+i]<<'\n';
+        for(unsigned short i=1;i!=5;++i){
+            cout<<"1-"<<i<<' '<<lang.tag["name-1-"+tos(i)]<<'\n';
         }
         cout<<"0 "<<lang.tag["exit"]<<"\n"\
             <<lang.tag["menu-choice"]<<">>[   ]\033[4D";
         cin>>input;
         if(input=="0")return;
-        if(all.set("data/levels.data",input)){
+        if(all.set(setting.tag["level-data"],input)){
             all.help_words=lang.tag["help-"+input];
             all.work();
             cls;
@@ -101,4 +104,19 @@ void level_menu(){
         }
         all.clear();
     }
+}
+void set_game(){
+    for(auto i:setting.tag){
+        cout<<"Value of "<<i.first<<":"<<i.second<<'\n';
+    }
+    cout<<"Input what you want to set:\n[Tag name] [Tag value]\n";
+    cin>>input>>input2;
+    if(setting.tag.find(input)==setting.tag.end()){
+        cout<<"Illegal tag name!\nPress any key to continue.\n";
+        cin>>input;
+        return;
+    }
+    setting.tag[input]=input2;
+    if(input=="lang-data")lang.fill(setting.tag["lang-data"]);
+    setting.save("save/setting.txt");
 }

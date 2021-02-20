@@ -32,6 +32,7 @@ void block::set(char in){
         case '.':id=air;break;
         case ':':id=smoke;break;
         case '%':id=exitb;break;
+        case '$':id=money;break;
         default:{
             id=texts;
             info=in;
@@ -47,4 +48,14 @@ entity::entity(unsigned short iid,unsigned short hhealth,string nname){
     id=iid;
     health=hhealth;
     name=nname;
+}
+string tos(unsigned short x){
+    string s;
+    do{
+        s=char('0'+x%10)+s;
+        x/=10;
+        if(x==0)return s;
+    }
+    while(true);
+    return "0";
 }

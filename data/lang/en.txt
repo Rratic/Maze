@@ -19,3 +19,5 @@ name-1-2:Simple Maze
 help-1-2:There may be more than one exit.
 name-1-3:Move Texts
 help-1-3:Texts can be moved if they are not blocked.
+name-1-4:Start Earning
+help-1-4:Be careful!

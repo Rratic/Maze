@@ -17,4 +17,5 @@ class game{
 void init();
 void menu();
 void level_menu();
+void set_game();
 #endif

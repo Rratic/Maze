@@ -47,4 +47,5 @@ class entity{
     entity(unsigned short iid,unsigned short hhealth,string nname);
     void die();
 };
+string tos(unsigned short x);
 #endif

@@ -8,13 +8,15 @@ chunk::chunk(const chunk &other){
     for(unsigned short i=0;i<16;++i){
         for(unsigned short j=0;j<16;++j)blocks[i][j]=other.blocks[i][j];
     }
+    l=other.l;
+    w=other.w;
 }
 chunk::~chunk(){
     player=nullptr;
 }
 void chunk::putchunk(){
-    for(unsigned short i=0;i<16;++i){
-        for(unsigned short j=0;j<16;++j){
+    for(unsigned short i=0;i<l;++i){
+        for(unsigned short j=0;j<w;++j){
             PAINT brush=make_pair(37,40);
             char ch=blocks[i][j].push_block(brush);
             if(player==nullptr||player->x!=i||player->y!=j){
@@ -81,6 +83,10 @@ unsigned short chunk::work(unsigned short &info,string words){
             return 1;
         }
         if(blocks[x][y].id/100==wall)continue;
+        if(blocks[x][y].id==money){
+            ++info;
+            blocks[x][y].id=air;
+        }
         if(blocks[x][y].id==texts){
             if(blocks[x+xx][y+yy].id/100!=space)continue;
             blocks[x+xx][y+yy]=blocks[x][y];
