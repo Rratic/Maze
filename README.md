@@ -15,7 +15,7 @@ e.g. (using g++,code path=`D:/C++`):`g++ -std=c++11 D:/C++/Maze/cpp11/main.cpp D
 #### And then然后……
 your folder must at least include:
 ```
-data/levels.data
+data/
 maze.exe (or other excutable files)
 ```
 Run maze.exe

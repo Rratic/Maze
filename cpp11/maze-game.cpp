@@ -14,6 +14,7 @@ void init(){
         cout<<"Language package unfound!\nExpected file path:"<<setting.tag["lang-data"]<<"\nPlease check save/setting.txt,and then continue.\n";
         cin>>input;
     }
+    savedgame.fill(setting.tag["saving"]);
 }
 bool game::set(string filename,string find){
     ifstream fin;
@@ -52,7 +53,7 @@ bool game::set(string filename,string find){
     return true;
 }
 void end_with(string s){
-    cout<<s<<'\n'<<lang.tag["pause"]<<'\n';
+    cout<<s<<'\n'<<lang.search("pause")<<'\n';
     char c;
     cin>>c;
 }
@@ -62,25 +63,25 @@ unsigned short game::work(){
         a=chunks[focusing].work(b,help_words);
         switch(a){
             case 0:{
-                end_with(lang.tag["win"]+'\n'+lang.tag["score"]+':'+tos(b));
+                end_with(lang.search("win")+'\n'+lang.search("score")+':'+tos(b));
                 savedgame.tag[name]=tos(b);
                 savedgame.save(setting.tag["saving"]);
                 return 0;
             }
-            case 1:end_with(lang.tag["die-0"]);return 1;
+            case 1:end_with(lang.search("die-0"));return 1;
             case 4:return 4;
         }
     }
     return 0;
 }
 void menu(){
-    cout<<"\033[92m"<<lang.tag["game-name"]<<'\n'\
+    cout<<"\033[92m"<<lang.search("game-name")<<'\n'\
         <<"\033[93m===\n\033[m"\
-        <<"1="<<lang.tag["menu-first"]<<'\n'\
-        <<"2="<<lang.tag["menu-second"]<<'\n'\
-        <<"0="<<lang.tag["exit"]<<'\n'\
-        <<"s="<<lang.tag["menu-setting"]<<'\n'\
-        <<lang.tag["menu-choice"]<<">>[ ]\033[2D";
+        <<"1="<<lang.search("menu-first")<<'\n'\
+        <<"2="<<lang.search("menu-second")<<'\n'\
+        <<"0="<<lang.search("exit")<<'\n'\
+        <<"s="<<lang.search("menu-setting")<<'\n'\
+        <<lang.search("menu-choice")<<">>[ ]\033[2D";
     cin>>input;
     if(input=="0")exit(0);
     cls;
@@ -95,23 +96,23 @@ void level_menu(){
     while(true){
         for(unsigned short i=1;i!=5;++i){
             string te="1-"+tos(i);
-            cout<<"1-"<<i<<' '<<lang.tag["name-"+te]<<' ';
-            if(savedgame.without(te))cout<<lang.tag["level-uncompleted"];
-            else cout<<lang.tag["score"]<<':'<<savedgame.tag[te];
+            cout<<"1-"<<i<<' '<<lang.search("name-"+te)<<' ';
+            if(savedgame.without(te))cout<<lang.search("level-uncompleted");
+            else cout<<lang.search("score")<<':'<<savedgame.tag[te];
             cout<<'\n';
         }
-        cout<<"0 "<<lang.tag["exit"]<<"\n"\
-            <<lang.tag["menu-choice"]<<">>[   ]\033[4D";
+        cout<<"0 "<<lang.search("exit")<<"\n"\
+            <<lang.search("menu-choice")<<">>[   ]\033[4D";
         cin>>input;
         if(input=="0")return;
         if(all.set(setting.tag["level-data"],input)){
-            all.help_words=lang.tag["help-"+input];
+            all.help_words=lang.search("help-"+input);
             all.work();
             cls;
         }
         else{
             cls;
-            cout<<"\033[91m"<<lang.tag["level-unfound"]<<"\033[m\n";
+            cout<<"\033[91m"<<lang.search("level-unfound")<<"\033[m\n";
         }
         all.clear();
     }
