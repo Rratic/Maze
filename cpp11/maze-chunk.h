@@ -9,6 +9,7 @@ class chunk
 {
     public:
     entity *player;
+    vector<entity>monsters;
     array<array<block,16>,16>blocks;
     unsigned short l,w;
     chunk();

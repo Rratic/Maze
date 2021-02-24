@@ -12,7 +12,7 @@ chunk::chunk(const chunk &other){
     w=other.w;
 }
 chunk::~chunk(){
-    player=nullptr;
+    if(player!=nullptr)delete player;
 }
 void chunk::putchunk(){
     for(unsigned short i=0;i<l;++i){
@@ -48,6 +48,8 @@ bool chunk::toline(string s,unsigned short line){
             player=new entity;
             player->x=line;
             player->y=c;
+            player->health=10;
+            player->id=0;
             blocks[line][c].id=air;
         }
         else{

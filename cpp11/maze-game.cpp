@@ -94,10 +94,10 @@ void game::clear(){
 void level_menu(){
     game all;
     while(true){
-        for(unsigned short i=1;i!=5;++i){
+        for(unsigned short i=1;i!=6;++i){
             string te="1-"+tos(i);
             cout<<"1-"<<i<<' '<<lang.search("name-"+te)<<' ';
-            if(savedgame.without(te))cout<<lang.search("level-uncompleted");
+            if(savedgame.without(te))cout<<"\033[91m"<<lang.search("level-uncompleted")<<"\033[m";
             else cout<<lang.search("score")<<':'<<savedgame.tag[te];
             cout<<'\n';
         }
