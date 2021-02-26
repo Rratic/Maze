@@ -43,6 +43,10 @@ void block::settext(char in){
     id=texts;
     info=in;
 }
+bool block::issolid(){
+    if(id%100==wall||id%100==texts)return true;
+    return false;
+}
 entity::entity(){id=0;}
 entity::entity(unsigned short iid,unsigned short hhealth,string nname){
     id=iid;
@@ -58,4 +62,12 @@ string tos(unsigned short x){
     }
     while(true);
     return "0";
+}
+unsigned short tou(string s){
+    unsigned short x=0,l=s.length();
+    for(unsigned short i=0;i<l;++i){
+        x*=10;
+        x+=(s[i]-'0');
+    }
+    return x;
 }

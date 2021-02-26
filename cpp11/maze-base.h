@@ -37,6 +37,7 @@ class block{
     void set(char in);
     char push_block(PAINT &color);
     void settext(char in);
+    bool issolid();
 };
 class entity{
     public:
@@ -48,4 +49,5 @@ class entity{
     void die();
 };
 string tos(unsigned short x);
+unsigned short tou(string s);
 #endif

@@ -43,6 +43,18 @@ bool chunk::toline(string s,unsigned short line){
             ++c;
             continue;
         }
+        if(s[i]=='&'){
+            entity te;
+            string ss;
+            for(i+=2;s[i]!=',';++i){ss+=s[i];}
+            te.id=tou(ss);
+            ss="";
+            for(++i;s[i]!='}';++i){
+                if(s[i]=='\\')++i;
+                ss+=s[i];
+            }
+            te.name=ss;
+        }
         if(s[i]=='@'){
             if(player!=nullptr)return false;
             player=new entity;
@@ -57,6 +69,10 @@ bool chunk::toline(string s,unsigned short line){
         }
         ++c;
     }
+    return true;
+}
+bool chunk::canmove(unsigned short x,unsigned short y,short xx,short yy){
+    if(blocks[x+xx][y+yy].issolid()||blocks[x][y].issolid())return false;
     return true;
 }
 unsigned short chunk::work(unsigned short &info,string words){

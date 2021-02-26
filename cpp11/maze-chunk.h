@@ -17,6 +17,8 @@ class chunk
     ~chunk();
     void putchunk();
     bool toline(string s,unsigned short line);
+    bool canmove(unsigned short x,unsigned short y,short xx,short yy);
+    bool workmonsters(unsigned short id);
     unsigned short work(unsigned short &info,string words);
 };
 #endif

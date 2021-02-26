@@ -25,3 +25,9 @@ name-1-4:Start Earning
 help-1-4:Be careful!
 name-1-5:Little Review
 help-1-5:Use q to quit.
+name-1-6:First Monster
+help-1-6:Avoid it!
+name-1-7:Trap the Monster
+help-1-7:Observe how the monster moves.
+name-1-8:Colorful?
+help-1-8:Be patient.
