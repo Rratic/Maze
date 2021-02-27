@@ -24,6 +24,14 @@ void chunk::putchunk(){
                 cout<<ch;
             }
             else{
+                bool flag=false;
+                for(entity k:monsters){
+                    if(k.x==i&&k.y==j){
+                        flag=true;
+                        cout<<"\033[91m&";
+                    }
+                }
+                if(flag)continue;
                 cout<<putcolor(lf(p_cyan));
                 if(blocks[i][j].id/100==machine)cout<<putcolor(db(p_green));
                 else cout<<putcolor(db(p_black));
@@ -58,6 +66,7 @@ bool chunk::toline(string s,unsigned short line){
             te.y=c;
             te.health=te.healthcon[te.id];
             monsters.push_back(te);
+            blocks[line][c].id=air;
         }
         else if(s[i]=='@'){
             if(player!=nullptr)return false;
@@ -82,10 +91,30 @@ bool chunk::canmove(unsigned short x,unsigned short y,short xx,short yy){
 bool chunk::workmonsters(entity &i){
     switch(i.id){
         case 1:{
-            if(blocks[i.x][i.y].issolid())break;
-            short xx=0,yy=0;
+            if(blocks[i.x][i.y].issolid()){
+                --i.health;
+                break;
+            }
+            short xx,yy;
+            for(size_t j=0;j<8;++j){
+                if(i.x+mox[j]==player->x&&i.y+moy[j]==player->y){
+                    player->health-=7;
+                }
+            }
+        }
+        case 2:{
+            unsigned short pos=0,face=1;
+            if(i.memory.size()==0){
+                i.memory.push_back(pos);
+                i.memory.push_back(face);
+            }
+            else{
+                pos=i.memory[0];
+                face=i.memory[1];
+            }
         }
     }
+    if(i.health<=0)return true;
     return false;
 }
 unsigned short chunk::work(unsigned short &info,string words){
@@ -137,6 +166,11 @@ unsigned short chunk::work(unsigned short &info,string words){
                 if(it==monsters.end())break;
             }
         }
+        if(player->health<=0){
+            if(blocks[player->x][player->y].id==smoke)info=1;
+            else info=3;
+            return 1;
+        }
     }
 }
 /*
@@ -153,4 +187,5 @@ unsigned short chunk::work(unsigned short &info,string words){
 0   虚空
 1   未知（用在雾中）
 2   卡住
+3   怪物
 */
