@@ -80,3 +80,8 @@ unsigned short tou(string s){
     }
     return x;
 }
+short sign(short i){
+    if(i>0)return 1;
+    if(i==0)return 0;
+    return -1;
+}

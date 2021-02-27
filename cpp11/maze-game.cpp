@@ -10,6 +10,24 @@ void init(){
             cin>>input;
         }
     }
+    if(setting.without("user-name")){
+        cout<<"Please input your name:";
+        bool flag=true;
+        while(flag){
+            cin>>input;
+            size_t l=input.length();
+            flag=false;
+            for(size_t i=0;i<l;++i){
+                if(input[i]<=' '){
+                    flag=true;
+                    break;
+                }
+            }
+            if(flag)cout<<"Illegal user name!\nUser names should look like \"Rratic\"\n";
+        }
+        setting.tag["user-name"]=input;
+        setting.save("save/setting.txt");
+    }
     if(!lang.fill(setting.tag["lang-data"])){
         cout<<"Language package unfound!\nExpected file path:"<<setting.tag["lang-data"]<<"\nPlease check save/setting.txt,and then continue.\n";
         cin>>input;
@@ -23,7 +41,7 @@ bool game::set(string filename,string find){
     name=find;
     string s;
     find='$'+find;
-    unsigned short num,len;
+    unsigned short num,len,wid;
     bool flag=true;
     while(getline(fin,s)){
         if(s==find){
@@ -32,14 +50,14 @@ bool game::set(string filename,string find){
         }
     }
     if(flag)return false;
-    fin>>num>>len;
+    fin>>num>>len>>wid;
     for(unsigned short i=0;i<num;++i){
         getline(fin,s);
         chunk te;
         te.l=len;
+        te.w=wid;
         for(unsigned short j=0;j<len;++j){
             getline(fin,s);
-            if(j==0)te.w=s.length();
             if(s.find("@")!=s.npos){
                 if(flag)return false;
                 focusing=i;
@@ -68,7 +86,7 @@ unsigned short game::work(){
                 savedgame.save(setting.tag["saving"]);
                 return 0;
             }
-            case 1:end_with(lang.search("die-0"));return 1;
+            case 1:end_with(setting.search("user-name")+lang.search("die-"+tos(b)));return 1;
             case 4:return 4;
         }
     }
@@ -94,7 +112,7 @@ void game::clear(){
 void level_menu(){
     game all;
     while(true){
-        for(unsigned short i=1;i!=6;++i){
+        for(unsigned short i=1;i!=9;++i){
             string te="1-"+tos(i);
             cout<<"1-"<<i<<' '<<lang.search("name-"+te)<<' ';
             if(savedgame.without(te))cout<<"\033[91m"<<lang.search("level-uncompleted")<<"\033[m";
@@ -121,8 +139,10 @@ void set_game(){
     for(auto i:setting.tag){
         cout<<"Value of "<<i.first<<":"<<i.second<<'\n';
     }
-    cout<<"Input what you want to set:\n[Tag name] [Tag value]\n";
-    cin>>input>>input2;
+    cout<<"Input what you want to set:\n[Tag name] [Tag value]\nUse q to quit.\n";
+    cin>>input;
+    if(input=="q")return;
+    cin>>input2;
     if(setting.tag.find(input)==setting.tag.end()){
         cout<<"Illegal tag name!\nPress any key to continue.\n";
         cin>>input;

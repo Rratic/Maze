@@ -27,6 +27,6 @@ l=light
 f=font
 b=background
 */
-extern string heart,heart2,star,arroww,arrowa,arrows,arrowd,arrow2w,arrow2a,arrow2s,arrow2d;
+extern string heart,heart2,star,arroww,arrowa,arrows,arrowd,arrow2w,arrow2a,arrow2s,arrow2d,death;
 extern short mox[8],moy[8];
 #endif

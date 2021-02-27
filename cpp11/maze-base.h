@@ -43,8 +43,7 @@ class block{
 class entity{
     public:
     static const unsigned short healthcon[];
-    unsigned short id,health;
-    char x,y;
+    short id,x,y,health;
     string name;
     vector<short>memory;
     entity();
@@ -53,4 +52,5 @@ class entity{
 };
 string tos(unsigned short x);
 unsigned short tou(string s);
+short sign(short i);
 #endif

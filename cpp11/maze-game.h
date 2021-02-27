@@ -1,7 +1,6 @@
 #ifndef rra_maze_game
 #define rra_maze_game
 #include "maze-chunk.h"
-#include "file-control.h"
 extern string input;
 class game{
     private:

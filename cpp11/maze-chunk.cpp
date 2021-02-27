@@ -10,6 +10,7 @@ chunk::chunk(const chunk &other){
     }
     l=other.l;
     w=other.w;
+    monsters=other.monsters;
 }
 chunk::~chunk(){
     if(player!=nullptr)delete player;
@@ -20,18 +21,19 @@ void chunk::putchunk(){
             PAINT brush=make_pair(37,40);
             char ch=blocks[i][j].push_block(brush);
             if(player==nullptr||player->x!=i||player->y!=j){
-                cout<<putbrush(brush);
-                cout<<ch;
-            }
-            else{
                 bool flag=false;
                 for(entity k:monsters){
                     if(k.x==i&&k.y==j){
                         flag=true;
                         cout<<"\033[91m&";
+                        break;
                     }
                 }
                 if(flag)continue;
+                cout<<putbrush(brush);
+                cout<<ch;
+            }
+            else{
                 cout<<putcolor(lf(p_cyan));
                 if(blocks[i][j].id/100==machine)cout<<putcolor(db(p_green));
                 else cout<<putcolor(db(p_black));
@@ -84,8 +86,9 @@ bool chunk::toline(string s,unsigned short line){
     }
     return true;
 }
-bool chunk::canmove(unsigned short x,unsigned short y,short xx,short yy){
-    if(blocks[x+xx][y+yy].issolid()||blocks[x][y].issolid())return false;
+bool chunk::canmove(short x,short y,short xx,short yy){
+    xx+=x;yy+=y;
+    if(xx<0||yy<0||xx>=l||yy>=w||blocks[xx][yy].issolid()||blocks[x][y].issolid())return false;
     return true;
 }
 bool chunk::workmonsters(entity &i){
@@ -95,12 +98,30 @@ bool chunk::workmonsters(entity &i){
                 --i.health;
                 break;
             }
+            if(blocks[i.x][i.y].id==blank){
+                cout<<i.name<<lang.search("die-0");
+                return true;
+            }
             short xx,yy;
-            for(size_t j=0;j<8;++j){
+            for(size_t j=0;j<4;++j){
                 if(i.x+mox[j]==player->x&&i.y+moy[j]==player->y){
                     player->health-=7;
                 }
             }
+            xx=player->x-i.x;
+            yy=player->y-i.y;
+            if(abs(xx)>=abs(yy)){
+                yy=0;
+                xx=sign(xx);
+            }else{
+                xx=0;
+                yy=sign(yy);
+            }
+            if(canmove(i.x,i.y,xx,yy)){
+                i.x+=xx;
+                i.y+=yy;
+            }
+            break;
         }
         case 2:{
             unsigned short pos=0,face=1;
@@ -112,6 +133,23 @@ bool chunk::workmonsters(entity &i){
                 pos=i.memory[0];
                 face=i.memory[1];
             }
+            short xx=mox[face],yy=moy[face],j=0;
+            while(!canmove(i.x,i.y,xx,yy)){
+                ++face;
+                if(face==4)face=0;
+                xx=mox[face];
+                yy=moy[face];
+                if(j==3)return true;
+                ++j;
+            }
+            blocks[i.x][i.y].id=texts;
+            blocks[i.x][i.y].info=i.name[pos];
+            ++pos;
+            if(pos==i.name.length())return true;
+            i.x+=xx;i.y+=yy;
+            i.memory[0]=pos;
+            i.memory[1]=face;
+            break;
         }
     }
     if(i.health<=0)return true;

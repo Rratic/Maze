@@ -13,7 +13,10 @@ level-unfound:Error opening level :(
 level-uncompleted:Uncompleted
 score:Score
 win:Success!
-die-0:You fell into the void!
+die-0: fell into the void!
+die-1: died but couldn't find the reason.
+die-2: couln't breathe.
+die-3: was killed.
 ---
 name-1-1:Hello Maze
 help-1-1:Use w,a,s,d to move.When you reach the exit(%),press e.

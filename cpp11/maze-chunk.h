@@ -2,6 +2,7 @@
 #define rra_maze_map
 #include <array>
 #include "maze-base.h"
+#include "file-control.h"
 using std::array;
 class chunk
 {
@@ -15,7 +16,7 @@ class chunk
     ~chunk();
     void putchunk();
     bool toline(string s,unsigned short line);
-    bool canmove(unsigned short x,unsigned short y,short xx,short yy);
+    bool canmove(short x,short y,short xx,short yy);
     bool workmonsters(entity &i);
     unsigned short work(unsigned short &info,string words);
 };
