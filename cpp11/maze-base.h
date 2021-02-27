@@ -2,11 +2,12 @@
 #define rra_maze_base
 #include <iostream>
 #include <string>
+#include <vector>
 #include "paint.h"
-using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
+using std::vector;
 enum blocktype{
     blank=0,
     wall=1,
@@ -41,12 +42,14 @@ class block{
 };
 class entity{
     public:
+    static const unsigned short healthcon[];
     unsigned short id,health;
     char x,y;
     string name;
+    vector<short>memory;
     entity();
     entity(unsigned short iid,unsigned short hhealth,string nname);
-    void die();
+    void puthealth();
 };
 string tos(unsigned short x);
 unsigned short tou(string s);

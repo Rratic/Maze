@@ -1,7 +1,9 @@
 #ifndef rra_paint
 #define rra_paint
 #include <utility>
+#include <string>
 using std::pair;
+using std::string;
 using std::make_pair;
 typedef pair<unsigned short, unsigned short> PAINT;
 #define p_black 0
@@ -25,6 +27,6 @@ l=light
 f=font
 b=background
 */
-extern PAINT uni_paint;
-void clearpaint();
+extern string heart,heart2,star,arroww,arrowa,arrows,arrowd,arrow2w,arrow2a,arrow2s,arrow2d;
+extern short mox[8],moy[8];
 #endif

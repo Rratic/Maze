@@ -54,8 +54,12 @@ bool chunk::toline(string s,unsigned short line){
                 ss+=s[i];
             }
             te.name=ss;
+            te.x=line;
+            te.y=c;
+            te.health=te.healthcon[te.id];
+            monsters.push_back(te);
         }
-        if(s[i]=='@'){
+        else if(s[i]=='@'){
             if(player!=nullptr)return false;
             player=new entity;
             player->x=line;
@@ -75,11 +79,21 @@ bool chunk::canmove(unsigned short x,unsigned short y,short xx,short yy){
     if(blocks[x+xx][y+yy].issolid()||blocks[x][y].issolid())return false;
     return true;
 }
+bool chunk::workmonsters(entity &i){
+    switch(i.id){
+        case 1:{
+            if(blocks[i.x][i.y].issolid())break;
+            short xx=0,yy=0;
+        }
+    }
+    return false;
+}
 unsigned short chunk::work(unsigned short &info,string words){
     while(true){
         cls;
         putchunk();
-        cout<<words<<'\n';
+        player->puthealth();
+        cout<<'\n'<<words<<'\n';
         char in;
         cin>>in;
         char xx=0,yy=0,x=player->x,y=player->y;
@@ -117,6 +131,12 @@ unsigned short chunk::work(unsigned short &info,string words){
     q quit
     e "use"
     */
+        for(vector<entity>::iterator it=monsters.begin();it!=monsters.end();++it){
+            if(workmonsters(*it)){
+                monsters.erase(it);
+                if(it==monsters.end())break;
+            }
+        }
     }
 }
 /*

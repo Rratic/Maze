@@ -47,12 +47,21 @@ bool block::issolid(){
     if(id%100==wall||id%100==texts)return true;
     return false;
 }
+const unsigned short entity::healthcon[]={
+    10,5,1,
+};
 entity::entity(){id=0;}
 entity::entity(unsigned short iid,unsigned short hhealth,string nname){
     id=iid;
     health=hhealth;
     name=nname;
 }
+void entity::puthealth(){
+    cout<<putcolor(lf(p_red));
+    for(unsigned short i=0;i<health;++i)cout<<heart;
+    for(unsigned short i=health;i<10;++i)cout<<heart2;
+    cout<<"\033[m";
+};
 string tos(unsigned short x){
     string s;
     do{
