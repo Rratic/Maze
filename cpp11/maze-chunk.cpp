@@ -87,8 +87,10 @@ bool chunk::toline(string s,unsigned short line){
     return true;
 }
 bool chunk::canmove(short x,short y,short xx,short yy){
-    xx+=x;yy+=y;
-    if(xx<0||yy<0||xx>=l||yy>=w||blocks[xx][yy].issolid()||blocks[x][y].issolid())return false;
+    x+=xx;y+=yy;
+    if(x<0||y<0||x>=l||y>=w||blocks[x][y].issolid()\
+    ||(blocks[x][y].id==gate_east_west&&xx!=0)\
+    ||(blocks[x][y].id==gate_north_south&&yy!=0))return false;
     return true;
 }
 bool chunk::workmonsters(entity &i){
@@ -139,13 +141,19 @@ bool chunk::workmonsters(entity &i){
                 if(face==4)face=0;
                 xx=mox[face];
                 yy=moy[face];
-                if(j==3)return true;
+                if(j==3){
+                    blocks[i.x][i.y].id=texts;
+                    blocks[i.x][i.y].info=i.name[pos];
+                    return true;
+                }
                 ++j;
             }
             blocks[i.x][i.y].id=texts;
             blocks[i.x][i.y].info=i.name[pos];
             ++pos;
-            if(pos==i.name.length())return true;
+            if(pos==i.name.length()){
+                return true;
+            }
             i.x+=xx;i.y+=yy;
             i.memory[0]=pos;
             i.memory[1]=face;
@@ -181,13 +189,13 @@ unsigned short chunk::work(unsigned short &info,string words){
             info=0;
             return 1;
         }
-        if(blocks[x][y].id/100==wall)continue;
+        if(blocks[x][y].id/100==wall)goto movemonsters;
         if(blocks[x][y].id==money){
             ++info;
             blocks[x][y].id=air;
         }
         if(blocks[x][y].id==texts){
-            if(blocks[x+xx][y+yy].id/100!=space)continue;
+            if(blocks[x+xx][y+yy].id/100!=space)goto movemonsters;
             blocks[x+xx][y+yy]=blocks[x][y];
             blocks[x][y].id=air;
         }
@@ -198,6 +206,7 @@ unsigned short chunk::work(unsigned short &info,string words){
     q quit
     e "use"
     */
+        movemonsters:;
         for(vector<entity>::iterator it=monsters.begin();it!=monsters.end();++it){
             if(workmonsters(*it)){
                 monsters.erase(it);

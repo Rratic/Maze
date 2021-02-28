@@ -24,6 +24,8 @@ enum blocktype{
     machine=5,
         upstairs=500,
         downstairs,
+        gate_east_west,//-
+        gate_north_south,//|
         portal,
         button,
         entrance,

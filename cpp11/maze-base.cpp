@@ -44,7 +44,7 @@ void block::settext(char in){
     info=in;
 }
 bool block::issolid(){
-    if(id%100==wall||id%100==texts)return true;
+    if(id/100==wall||id/100==text)return true;
     return false;
 }
 const unsigned short entity::healthcon[]={
