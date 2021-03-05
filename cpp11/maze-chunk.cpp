@@ -157,6 +157,24 @@ bool chunk::workmonsters(entity &i){
             i.memory[1]=face;
             break;
         }
+        case 3:{
+            short xx=0,yy=0,x=i.x,y=i.y;
+            switch(in){
+                case 'w':xx=-1;break;
+                case 's':xx=1;break;
+                case 'a':yy=-1;break;
+                case 'd':yy=1;break;
+            }
+            x+=xx;y+=yy;
+            if(x<0||y<0||x>15||y>15||blocks[x][y].id==blank)return true;
+            if(blocks[x][y].id/100==wall)break;
+            if(blocks[x][y].id==texts){
+                if(blocks[x+xx][y+yy].id/100!=space)break;
+                blocks[x+xx][y+yy]=blocks[x][y];
+                blocks[x][y].id=air;
+            }
+            i.x=x;i.y=y;
+        }
     }
     if(i.health<=0)return true;
     return false;
@@ -168,7 +186,7 @@ unsigned short chunk::work(unsigned short &info,string words){
         player->puthealth();
         cout<<'\n'<<words<<'\n';
         cin>>in;
-        char xx=0,yy=0,x=player->x,y=player->y;
+        short xx=0,yy=0,x=player->x,y=player->y;
         switch(in){
             case 'q':return 4;
             case 'r':return 3;

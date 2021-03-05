@@ -48,7 +48,13 @@ bool block::issolid(){
     return false;
 }
 const unsigned short entity::healthcon[]={
-    10,5,1,
+    10,5,1,10,
+    /*
+    0   玩家
+    1   僵尸
+    2   打字机
+    3   模仿者
+    */
 };
 entity::entity(){id=0;}
 entity::entity(unsigned short iid,unsigned short hhealth,string nname){

@@ -15,5 +15,5 @@ class tags{
     bool save(string filename);
     bool without(string x);
 };
-extern tags lang,setting,savedgame;
+extern tags lang,setting,savedgame,count_levels;
 #endif

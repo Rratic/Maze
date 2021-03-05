@@ -34,3 +34,5 @@ name-1-7:Trap the Monster
 help-1-7:Observe how the monster moves.
 name-1-8:Colorful?
 help-1-8:Be patient.
+name-1-9:Multiplayer?
+help-1-9:They move in the same way.

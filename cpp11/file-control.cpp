@@ -40,4 +40,4 @@ bool tags::save(string filename){
 bool tags::without(string x){
     return tag.find(x)==tag.end();
 }
-tags lang,setting,savedgame;
+tags lang,setting,savedgame,count_levels;

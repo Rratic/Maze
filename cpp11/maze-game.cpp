@@ -5,6 +5,7 @@ void init(){
         setting.tag["level-data"]="data/levels.data";
         setting.tag["lang-data"]="data/lang/en.txt";
         setting.tag["saving"]="save/saving.txt";
+        setting.tag["count-data"]="data/count.data";
         if(!setting.save("save/setting.txt")){
             cout<<"Error saving setting!\nTarget file path:save/setting.txt\n";
             cin>>input;
@@ -33,6 +34,7 @@ void init(){
         cin>>input;
     }
     savedgame.fill(setting.tag["saving"]);
+    count_levels.fill(setting.tag["count-data"]);
 }
 bool game::set(string filename,string find){
     ifstream fin;
@@ -112,12 +114,15 @@ void game::clear(){
 void level_menu(){
     game all;
     while(true){
-        for(unsigned short i=1;i!=9;++i){
-            string te="1-"+tos(i);
-            cout<<"1-"<<i<<' '<<lang.search("name-"+te)<<' ';
-            if(savedgame.without(te))cout<<"\033[91m"<<lang.search("level-uncompleted")<<"\033[m";
-            else cout<<lang.search("score")<<':'<<savedgame.tag[te];
-            cout<<'\n';
+        for(unsigned short i=1;i<=tou(count_levels.tag["worlds"]);++i){
+            string tee=tos(i);
+            for(unsigned short j=1;j<=tou(count_levels.tag["world-"+tee]);++j){
+                string te=tee+'-'+tos(j);
+                cout<<i<<'-'<<j<<' '<<lang.search("name-"+te)<<' ';
+                if(savedgame.without(te))cout<<"\033[91m"<<lang.search("level-uncompleted")<<"\033[m";
+                else cout<<lang.search("score")<<':'<<savedgame.tag[te];
+                cout<<'\n';
+            }
         }
         cout<<"0 "<<lang.search("exit")<<"\n"\
             <<lang.search("menu-choice")<<">>[   ]\033[4D";
