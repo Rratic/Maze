@@ -1,4 +1,5 @@
 #include "maze-chunk.h"
+char in;
 chunk::chunk(){
     player=nullptr;
 }
@@ -21,15 +22,12 @@ void chunk::putchunk(){
             PAINT brush=make_pair(37,40);
             char ch=blocks[i][j].push_block(brush);
             if(player==nullptr||player->x!=i||player->y!=j){
-                bool flag=false;
                 for(entity k:monsters){
                     if(k.x==i&&k.y==j){
-                        flag=true;
-                        cout<<"\033[91m&";
+                        ch=k.look(brush);
                         break;
                     }
                 }
-                if(flag)continue;
                 cout<<putbrush(brush);
                 cout<<ch;
             }
@@ -169,7 +167,6 @@ unsigned short chunk::work(unsigned short &info,string words){
         putchunk();
         player->puthealth();
         cout<<'\n'<<words<<'\n';
-        char in;
         cin>>in;
         char xx=0,yy=0,x=player->x,y=player->y;
         switch(in){

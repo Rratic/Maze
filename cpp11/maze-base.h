@@ -51,6 +51,7 @@ class entity{
     entity();
     entity(unsigned short iid,unsigned short hhealth,string nname);
     void puthealth();
+    char look(PAINT &back);
 };
 string tos(unsigned short x);
 unsigned short tou(string s);

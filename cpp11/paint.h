@@ -18,6 +18,7 @@ typedef pair<unsigned short, unsigned short> PAINT;
 #define lf(a) a + 90
 #define db(a) a + 40
 #define lb(a) a + 100
+#define f_to_b(a) a + 10
 #define putcolor(a) "\033["<<a<<'m'
 #define cls cout<<"\033[2J\033[H"
 #define putbrush(a) putcolor(a.first)<<putcolor(a.second)

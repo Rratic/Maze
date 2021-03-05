@@ -61,7 +61,22 @@ void entity::puthealth(){
     for(unsigned short i=0;i<health;++i)cout<<heart;
     for(unsigned short i=health;i<10;++i)cout<<heart2;
     cout<<"\033[m";
-};
+}
+char entity::look(PAINT &back){
+    switch(id){
+        case 3:{
+            if(back.first==lf(p_green))back.second=db(p_green);
+            else back.second=db(p_black);
+            back.first=lf(p_cyan);
+            return '!';
+        }
+        default:{
+            if(back.first==lf(p_green))back.second=db(p_green);
+            back.first=lf(p_red);
+        }
+    }
+    return '&';
+}
 string tos(unsigned short x){
     string s;
     do{

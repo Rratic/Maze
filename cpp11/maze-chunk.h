@@ -4,6 +4,7 @@
 #include "maze-base.h"
 #include "file-control.h"
 using std::array;
+extern char in;
 class chunk
 {
     public:
