@@ -105,31 +105,43 @@ void menu(){
     cin>>input;
     if(input=="0")exit(0);
     cls;
-    if(input=="1")level_menu();
+    if(input=="1")world_menu();
     else if(input=="s")set_game();
 }
 void game::clear(){
     chunks.clear();
 }
-void level_menu(){
+void world_menu(){
+    for(unsigned short i=1;i<=tou(count_levels.tag["worlds"]);++i){
+        cout<<i<<'='<<lang.search("title-"+tos(i))<<'\n';
+    }
+    cout<<"0="<<lang.search("exit")<<'\n'<<lang.search("menu-choice")<<">>[ ]\033[2D";
+    cin>>input;
+    if(count_levels.without("world-"+input)||input=="0")return;
+    cls;
+    level_menu(tou(input));
+}
+void level_menu(unsigned short i){
     game all;
     while(true){
-        for(unsigned short i=1;i<=tou(count_levels.tag["worlds"]);++i){
+        //for(unsigned short i=1;i<=tou(count_levels.tag["worlds"]);++i){
             string tee=tos(i);
             for(unsigned short j=1;j<=tou(count_levels.tag["world-"+tee]);++j){
                 string te=tee+'-'+tos(j);
                 cout<<i<<'-'<<j<<' '<<lang.search("name-"+te)<<' ';
                 if(savedgame.without(te))cout<<"\033[91m"<<lang.search("level-uncompleted")<<"\033[m";
-                else cout<<lang.search("score")<<':'<<savedgame.tag[te];
+                else cout<<putcolor(lf(p_green))<<lang.search("score")<<':'<<savedgame.tag[te]<<"\033[m";
                 cout<<'\n';
             }
-        }
+        //}
         cout<<"0 "<<lang.search("exit")<<"\n"\
             <<lang.search("menu-choice")<<">>[   ]\033[4D";
         cin>>input;
         if(input=="0")return;
         if(all.set(setting.tag["level-data"],input)){
             all.help_words=lang.search("help-"+input);
+            cls;
+            if(!lang.without("story-"+input))show_story(lang.tag["story-"+input]);
             all.work();
             cls;
         }
@@ -157,4 +169,27 @@ void set_game(){
     if(input=="lang-data")lang.fill(input2);
     if(input=="saving")savedgame.fill(input2);
     setting.save("save/setting.txt");
+}
+void show_story(string s){
+    size_t t=s.length();
+    for(size_t i=0;i<t;++i){
+        if(s[i]=='$'){
+            string ss;
+            ++i;
+            for(++i;s[i]!='}';++i)ss+=s[i];
+            if(ss=="name")cout<<setting.tag["user-name"];
+            else cout<<'['<<ss<<']';
+            continue;
+        }
+        if(s[i]=='\\'){
+            ++i;
+            if(s[i]=='n'){
+                cout<<'\n';
+                continue;
+            }
+        }
+        cout<<s[i];
+    }
+    cout<<"\n>>[ ]\033[2D";
+    cin>>input;
 }

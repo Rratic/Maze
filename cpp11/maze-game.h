@@ -14,6 +14,8 @@ class game{
 };
 void init();
 void menu();
-void level_menu();
+void world_menu();
+void level_menu(unsigned short i);
 void set_game();
+void show_story(string s);
 #endif

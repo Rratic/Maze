@@ -18,6 +18,9 @@ die-1: died but couldn't find the reason.
 die-2: couln't breathe.
 die-3: was killed.
 ---
+title-1:Guide for Newbies
+title-2:The First Step
+---
 name-1-1:Hello Maze
 help-1-1:Use w,a,s,d to move.When you reach the exit(%),press e.
 name-1-2:Simple Maze
@@ -36,3 +39,6 @@ name-1-8:Colorful?
 help-1-8:Be patient.
 name-1-9:Multiplayer?
 help-1-9:They move in the same way.
+name-2-1:What's up?
+help-2-1:Zombies are really silly...
+story-2-1:Hello ${name},\nIt seems that we are trapped in this place.I've got no idea why.\nI can give you instructions,bu
