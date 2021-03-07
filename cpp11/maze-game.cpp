@@ -172,12 +172,19 @@ void set_game(){
 }
 void show_story(string s){
     size_t t=s.length();
+    time_t nowtime;
+    tm*newtime;
+    time(&nowtime);
+    newtime=localtime(&nowtime);
     for(size_t i=0;i<t;++i){
         if(s[i]=='$'){
             string ss;
             ++i;
             for(++i;s[i]!='}';++i)ss+=s[i];
             if(ss=="name")cout<<setting.tag["user-name"];
+            else if(ss=="time")cout<<newtime->tm_hour<<':'<<newtime->tm_min<<':'<<newtime->tm_sec;
+            else if(ss=="date")cout<<newtime->tm_year+1900<<'/'<<newtime->tm_mon<<'/'<<newtime->tm_mday;
+            //2038年失效qaq
             else cout<<'['<<ss<<']';
             continue;
         }

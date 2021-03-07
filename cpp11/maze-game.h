@@ -1,6 +1,11 @@
 #ifndef rra_maze_game
 #define rra_maze_game
 #include "maze-chunk.h"
+#include <ctime>
+using std::time_t;
+using std::time;
+using std::tm;
+using std::localtime;
 extern string input;
 class game{
     private:
@@ -18,4 +23,5 @@ void world_menu();
 void level_menu(unsigned short i);
 void set_game();
 void show_story(string s);
+void rand_game();
 #endif
