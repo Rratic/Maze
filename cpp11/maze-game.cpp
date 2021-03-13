@@ -35,6 +35,7 @@ void init(){
     }
     savedgame.fill(setting.tag["saving"]);
     count_levels.fill(setting.tag["count-data"]);
+    srand(time(nullptr));
 }
 bool game::set(string filename,string find){
     ifstream fin;
@@ -106,6 +107,7 @@ void menu(){
     if(input=="0")exit(0);
     cls;
     if(input=="1")world_menu();
+    else if(input=="0")rand_game();
     else if(input=="s")set_game();
 }
 void game::clear(){
@@ -201,4 +203,12 @@ void show_story(string s){
     }
     cout<<"\n>>[ ]\033[2D";
     cin>>input;
+}
+void rand_game(){
+    array<array<unsigned short,15>,15>a;
+    unsigned short x=rand();
+    prim<15U,15U>(15U,15U,a);
+    game all;
+    all.help_words="";
+    all.work();
 }

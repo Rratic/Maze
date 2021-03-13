@@ -1,11 +1,13 @@
 #ifndef rra_maze_game
 #define rra_maze_game
-#include "maze-chunk.h"
+#include "maze-generate.h"
 #include <ctime>
 using std::time_t;
 using std::time;
 using std::tm;
 using std::localtime;
+using std::rand;
+using std::srand;
 extern string input;
 class game{
     private:
