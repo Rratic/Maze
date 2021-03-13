@@ -10,7 +10,7 @@ bool tags::fill(string filename){
         string a,b;
         bool flag=false;
         for(size_t i=0;i<l;++i){
-            if(s[i]==':'){
+            if(s[i]==':'&&!flag){
                 flag=true;
                 continue;
             }

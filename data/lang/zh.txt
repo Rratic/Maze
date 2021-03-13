@@ -9,6 +9,10 @@ menu-choice:选择
 exit:退出
 pause:按任意键继续
 ---
+letter-sender:Rratic
+letter-from:来自：
+letter-to:发给：
+---
 level-unfound:打开关卡失败qaq
 level-uncompleted:未完成
 score:分数
@@ -42,3 +46,5 @@ help-1-9:它们同时移动。
 name-2-1:发生了什么？
 help-2-1:它们好像不太聪明……
 story-2-1:${name}你好，\n看起来我们似乎陷在这里了。\n我也不明白为什么……我能给你指示，亻
+name-2-2:混淆
+story-2-2:${head}\n地图越来越奇怪了。设计目的似乎不是杀死你。那是${ESC}[93m为什么${ESC}[m？\n我不明白……

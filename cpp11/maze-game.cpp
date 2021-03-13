@@ -184,6 +184,8 @@ void show_story(string s){
             if(ss=="name")cout<<setting.tag["user-name"];
             else if(ss=="time")cout<<newtime->tm_hour<<':'<<newtime->tm_min<<':'<<newtime->tm_sec;
             else if(ss=="date")cout<<newtime->tm_year+1900<<'/'<<newtime->tm_mon<<'/'<<newtime->tm_mday;
+            else if(ss=="ESC")cout<<'\033';
+            else if(ss=="head")cout<<lang.search("letter-from")<<lang.search("letter-sender")<<'\n'<<lang.search("letter-to")<<setting.tag["user-name"];
             //2038年失效qaq
             else cout<<'['<<ss<<']';
             continue;
