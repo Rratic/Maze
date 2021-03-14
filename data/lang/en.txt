@@ -15,6 +15,7 @@ letter-to:To:
 ---
 level-unfound:Error opening level :(
 level-uncompleted:Uncompleted
+no-help:No help provided.
 score:Score
 win:Success!
 die-0: fell into the void!

@@ -141,7 +141,8 @@ void level_menu(unsigned short i){
         cin>>input;
         if(input=="0")return;
         if(all.set(setting.tag["level-data"],input)){
-            all.help_words=lang.search("help-"+input);
+            if(lang.without("help-"+input))all.help_words=lang.search("no-help");
+            else all.help_words=lang.tag["help-"+input];
             cls;
             if(!lang.without("story-"+input))show_story(lang.tag["story-"+input]);
             all.work();

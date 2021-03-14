@@ -15,6 +15,7 @@ letter-to:发给：
 ---
 level-unfound:打开关卡失败qaq
 level-uncompleted:未完成
+no-help:无帮助提供。
 score:分数
 win:成功了！
 die-0:掉进了虚空！
