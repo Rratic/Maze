@@ -10,10 +10,9 @@ using std::rand;
 using std::srand;
 extern string input;
 class game{
-    private:
+    public:
     unsigned short focusing;
     vector<chunk>chunks;
-    public:
     string name,help_words;
     bool set(string filename,string find);
     unsigned short work();

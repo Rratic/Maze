@@ -1,7 +1,6 @@
 #include "maze-generate.h"
 #define isin(x,y) (x>=0&&y>=0&&x<m&&y<n)
-template<unsigned short l=15,unsigned short w=15>
-void prim(unsigned short maze_len,unsigned short maze_wid,array<array<unsigned short,l>,w>&a){
+void prim(unsigned short maze_len,unsigned short maze_wid,array<array<unsigned short,16>,16>&a){
     int m=maze_len,n=maze_wid;
     short mox[4]={0,0,1,-1},moy[4]={1,-1,0,0};
     vector<pair<unsigned short,unsigned short>>li;

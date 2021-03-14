@@ -75,6 +75,7 @@ bool chunk::toline(string s,unsigned short line){
             player->y=c;
             player->health=10;
             player->id=0;
+            player->name=setting.tag["user-name"];
             blocks[line][c].id=air;
         }
         else{

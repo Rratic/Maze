@@ -37,6 +37,7 @@ class block{
     public:
     unsigned short id,info;
     block();
+    void setdirect(unsigned short iid,unsigned short iinfo=0);
     void set(char in);
     char push_block(PAINT &color);
     void settext(char in);

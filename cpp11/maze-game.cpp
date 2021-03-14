@@ -107,7 +107,7 @@ void menu(){
     if(input=="0")exit(0);
     cls;
     if(input=="1")world_menu();
-    else if(input=="0")rand_game();
+    else if(input=="2")rand_game();
     else if(input=="s")set_game();
 }
 void game::clear(){
@@ -205,10 +205,31 @@ void show_story(string s){
     cin>>input;
 }
 void rand_game(){
-    array<array<unsigned short,15>,15>a;
-    unsigned short x=rand();
-    prim<15U,15U>(15U,15U,a);
+    unsigned short m=rand()%6+11,n=rand()%6+11;
+    array<array<unsigned short,16>,16>a;
+    prim(m,n,a);
     game all;
     all.help_words="";
+    all.focusing=0;
+    chunk temp;
+    temp.l=m;temp.w=n;
+    for(size_t i=0;i<m;++i){
+        for(size_t j=0;j<n;++j){
+            switch(a[i][j]){
+                case '#':temp.blocks[i][j].setdirect(unbreakable_wall);break;
+                case '@':{
+                    temp.player=new entity;
+                    temp.player->x=i;
+                    temp.player->y=j;
+                    temp.player->health=10;
+                    temp.player->id=0;
+                    temp.player->name=setting.tag["user-name"];
+                }
+                case '.':temp.blocks[i][j].setdirect(air);break;
+                case '%':temp.blocks[i][j].setdirect(exitb);break;
+            }
+        }
+    }
+    all.chunks.push_back(temp);
     all.work();
 }

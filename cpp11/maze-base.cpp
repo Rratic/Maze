@@ -1,5 +1,6 @@
 #include "maze-base.h"
 block::block() { id = blank; }
+void block::setdirect(unsigned short iid,unsigned short iinfo){id=iid;info=iinfo;}
 char block::push_block(PAINT &color)
 {
     auto te=id/100;
