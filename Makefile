@@ -1,1 +1,4 @@
-g++ -std=c++11 ./cpp11/main.cpp ./cpp11/maze-game.cpp ./cpp11/file-control.cpp ./cpp11/maze-chunk.cpp ./cpp11/maze-base.cpp./cpp11/paint.cpp ./cpp11/maze-generate.cpp -o ./maze
+compiler = g++
+result = maze
+src = $(shell find -name "*.cpp")
+$(compiler) $(src) -std=c++11 -o $(result)

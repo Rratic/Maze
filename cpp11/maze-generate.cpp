@@ -18,7 +18,8 @@ void prim(unsigned short maze_len,unsigned short maze_wid,array<array<unsigned s
         unsigned short c=0;
         for(int i=0;i<4;++i)if(isin(r.first+mox[i],r.second+moy[i])&&a[r.first+mox[i]][r.second+moy[i]]=='.')++c;
         if(c<=1){
-            a[r.first][r.second]='.';
+            if(rand()%5==0)a[r.first][r.second]='$';
+            else a[r.first][r.second]='.';
             for(int i=0;i<4;++i){
                 if(!was[r.first+mox[i]][r.second+moy[i]]&&isin(r.first+mox[i],r.second+moy[i])){
                     li.push_back(make_pair(r.first+mox[i],r.second+moy[i]));

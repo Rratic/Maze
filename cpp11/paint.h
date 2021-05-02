@@ -2,9 +2,11 @@
 #define rra_paint
 #include <utility>
 #include <string>
+#include <cstdlib>
 using std::pair;
 using std::string;
 using std::make_pair;
+using std::system;
 typedef pair<unsigned short, unsigned short> PAINT;
 #define p_black 0
 #define p_red 1
@@ -19,9 +21,31 @@ typedef pair<unsigned short, unsigned short> PAINT;
 #define db(a) a + 40
 #define lb(a) a + 100
 #define f_to_b(a) a + 10
+
+// #define cls cout<<"\033[2J\033[H"
+#ifndef _WIN32
+#define cls system("clear")
+#endif
+
+#ifdef _WIN32
+#define cls system("cls")
+#endif
+
+#ifndef DISABLE_COLOR
 #define putcolor(a) "\033["<<a<<'m'
-#define cls cout<<"\033[2J\033[H"
+#define normalcolor "\033[m"
+#define cursorleft(a) "\033["<<a<<"D"
+#endif
+
+#ifdef DISABLE_COLOR
+#define putcolor(a) ""
+#define normalcolor ""
+#define cursorleft(a) ""
+#endif
+
 #define putbrush(a) putcolor(a.first)<<putcolor(a.second)
+
+
 /*
 d=dark
 l=light

@@ -38,7 +38,7 @@ void chunk::putchunk(){
                 cout<<'!';
             }
         }
-        cout<<"\033[m\n";
+        cout<<normalcolor<<"\n";
     }
 }
 bool chunk::toline(string s,unsigned short line){

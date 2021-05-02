@@ -67,7 +67,7 @@ void entity::puthealth(){
     cout<<putcolor(lf(p_red));
     for(unsigned short i=0;i<health;++i)cout<<heart;
     for(unsigned short i=health;i<10;++i)cout<<heart2;
-    cout<<"\033[m";
+    cout<<normalcolor;
 }
 char entity::look(PAINT &back){
     switch(id){

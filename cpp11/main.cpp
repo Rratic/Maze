@@ -1,6 +1,4 @@
-#include <cstdlib>
 #include "maze-game.h"
-using std::system;
 int main(){
     init();
 #ifdef _WIN32

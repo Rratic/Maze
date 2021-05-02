@@ -96,13 +96,13 @@ unsigned short game::work(){
     return 0;
 }
 void menu(){
-    cout<<"\033[92m"<<lang.search("game-name")<<'\n'\
-        <<"\033[93m===\n\033[m"\
+    cout<<putcolor(lf(p_green))<<lang.search("game-name")<<'\n'\
+        <<putcolor(lf(p_yellow))<<"===\n"<<normalcolor\
         <<"1="<<lang.search("menu-first")<<'\n'\
         <<"2="<<lang.search("menu-second")<<'\n'\
         <<"0="<<lang.search("exit")<<'\n'\
         <<"s="<<lang.search("menu-setting")<<'\n'\
-        <<lang.search("menu-choice")<<">>[ ]\033[2D";
+        <<lang.search("menu-choice")<<">>[ ]"<<cursorleft(2);
     cin>>input;
     if(input=="0")exit(0);
     cls;
@@ -117,7 +117,7 @@ void world_menu(){
     for(unsigned short i=1;i<=tou(count_levels.tag["worlds"]);++i){
         cout<<i<<'='<<lang.search("title-"+tos(i))<<'\n';
     }
-    cout<<"0="<<lang.search("exit")<<'\n'<<lang.search("menu-choice")<<">>[ ]\033[2D";
+    cout<<"0="<<lang.search("exit")<<'\n'<<lang.search("menu-choice")<<">>[ ]"<<cursorleft(2);
     cin>>input;
     if(count_levels.without("world-"+input)||input=="0")return;
     cls;
@@ -131,13 +131,13 @@ void level_menu(unsigned short i){
             for(unsigned short j=1;j<=tou(count_levels.tag["world-"+tee]);++j){
                 string te=tee+'-'+tos(j);
                 cout<<i<<'-'<<j<<' '<<lang.search("name-"+te)<<' ';
-                if(savedgame.without(te))cout<<"\033[91m"<<lang.search("level-uncompleted")<<"\033[m";
-                else cout<<putcolor(lf(p_green))<<lang.search("score")<<':'<<savedgame.tag[te]<<"\033[m";
+                if(savedgame.without(te))cout<<putcolor(lf(p_red))<<lang.search("level-uncompleted")<<normalcolor;
+                else cout<<putcolor(lf(p_green))<<lang.search("score")<<':'<<savedgame.tag[te]<<normalcolor;
                 cout<<'\n';
             }
         //}
         cout<<"0 "<<lang.search("exit")<<"\n"\
-            <<lang.search("menu-choice")<<">>[   ]\033[4D";
+            <<lang.search("menu-choice")<<">>[   ]"<<cursorleft(4);
         cin>>input;
         if(input=="0")return;
         if(all.set(setting.tag["level-data"],input)){
@@ -150,7 +150,7 @@ void level_menu(unsigned short i){
         }
         else{
             cls;
-            cout<<"\033[91m"<<lang.search("level-unfound")<<"\033[m\n";
+            cout<<putcolor(lf(p_red))<<lang.search("level-unfound")<<normalcolor<<"\n";
         }
         all.clear();
     }
@@ -187,7 +187,15 @@ void show_story(string s){
             if(ss=="name")cout<<setting.tag["user-name"];
             else if(ss=="time")cout<<newtime->tm_hour<<':'<<newtime->tm_min<<':'<<newtime->tm_sec;
             else if(ss=="date")cout<<newtime->tm_year+1900<<'/'<<newtime->tm_mon<<'/'<<newtime->tm_mday;
-            else if(ss=="ESC")cout<<'\033';
+            else if(ss=="ESC"){
+                unsigned short x=0;
+                for(++i;s[i]!=')';++i){
+                    x+=(s[i]-'0');
+                    x*=10;
+                }
+                ++i;
+                cout<<putcolor(x);
+            }
             else if(ss=="head")cout<<lang.search("letter-from")<<lang.search("letter-sender")<<'\n'<<lang.search("letter-to")<<setting.tag["user-name"];
             //2038年失效qaq
             else cout<<'['<<ss<<']';
@@ -202,7 +210,7 @@ void show_story(string s){
         }
         cout<<s[i];
     }
-    cout<<"\n>>[ ]\033[2D";
+    cout<<"\n>>[ ]"<<cursorleft(2);
     cin>>input;
 }
 void rand_game(){
@@ -228,6 +236,7 @@ void rand_game(){
                 }
                 case '.':temp.blocks[i][j].setdirect(air);break;
                 case '%':temp.blocks[i][j].setdirect(exitb);break;
+                case '$':temp.blocks[i][j].setdirect(money);break;
             }
         }
     }
