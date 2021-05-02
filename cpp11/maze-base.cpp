@@ -14,7 +14,12 @@ char block::push_block(PAINT &color)
         case machine:color.first=lf(p_green);break;
     }
     switch(id){
+#ifndef DISABLE_COLOR
         case blank:return ' ';
+#endif
+#ifdef DISABLE_COLOR
+        case blank:return '-';
+#endif
         case unbreakable_wall:return '#';
         case stone_wall:return 'X';
         case texts:return char(info);
